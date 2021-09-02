@@ -1,0 +1,5 @@
+import 'package:converter/type_converter.dart';
+
+CREATE TABLE example_table (
+    json_column TEXT MAPPED BY `const JsonConverter()`
+);
