@@ -10,4 +10,8 @@ part 'database.g.dart';
 )
 class ExampleDatabase extends _$ExampleDatabase {
   ExampleDatabase(QueryExecutor e) : super(e);
+
+  @override
+  // TODO: implement schemaVersion
+  int get schemaVersion => throw UnimplementedError();
 }
