@@ -313,7 +313,7 @@ packages:
     source: hosted
     version: "4.5.0"
   moor_generator:
-    dependency: "direct main"
+    dependency: "direct dev"
     description:
       name: moor_generator
       url: "https://pub.dartlang.org"

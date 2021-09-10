@@ -1,5 +1,29 @@
 import 'package:converter/type_converter.dart';
 
 CREATE TABLE example_table (
-    json_column TEXT MAPPED BY `const JsonConverter()`
+    json_column TEXT MAPPED BY `const JsonConverter()`,
+    name TEXT,
+    content TEXT
 );
+
+CREATE VIRTUAL TABLE example_table_search
+    USING fts5(
+        name, content, content='example_table', content_rowid='rowid'
+    );
+
+CREATE TRIGGER example_table_ai AFTER INSERT ON example_table BEGIN
+	INSERT INTO example_table_search(name, content)
+	VALUES (new.name, new.content);
+END;
+
+CREATE TRIGGER example_table_ad AFTER DELETE ON example_table BEGIN
+	INSERT INTO example_table_search(example_table_search, name, content)
+	VALUES ('delete', old.name, old.content);
+END;
+
+CREATE TRIGGER example_table_au AFTER UPDATE ON example_table BEGIN
+	INSERT INTO example_table_search(example_table_search, name, content)
+	VALUES ('delete', old.name, old.content);
+	INSERT INTO example_table_search(name, content)
+	VALUES (new.name, new.content);
+END;

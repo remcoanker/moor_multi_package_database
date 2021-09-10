@@ -1,0 +1,11 @@
+import 'package:module/table.moor';
+
+exampleSearch: SELECT example_table.**, s.* FROM example_table
+    INNER JOIN (
+        SELECT rowid,
+            highlight(example_table_search, 0, '[match]', '[match]') name,
+            snippet(example_table_search, 1, '[match]', '[match]', '...', 10) content,
+            bm25(example_table_search) AS rank
+        FROM example_table_search WHERE example_table_search MATCH :search
+    ) AS s
+    ON s.rowid = example_table.rowid;

@@ -12,9 +12,14 @@ dependencies:
 
   converter:
     path: ../converter
+  database:
+    path: ../database
 
   moor: ^4.5.0
+  moor_generator: ^4.5.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+  build_runner: ^2.1.1

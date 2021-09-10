@@ -1,0 +1,23 @@
+targets:
+  $default:
+    builders:
+      moor_generator:
+        options:
+          sqlite_modules:
+            - json1
+            - fts5
+          # Needed to use isolates
+          generate_connect_constructor: true
+          # Named is better than positional
+          named_parameters: true
+          # Use mapped dart types instead of sqlite types in queries
+          apply_converters_on_variables: true
+          # Makes it possible to set value to null (null-safety compatibility)
+          generate_values_in_copy_with: true
+          # Generates queries from parsed AST instead of string replace
+          new_sql_code_generation: false
+          # Less generated code, but less specific error messages
+          skip_verification_code: true
+          # Don't generate toCompanion methods on data classes
+          # Use extension on domain classes to create companions if needed
+          data_class_to_companions: false

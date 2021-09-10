@@ -16,10 +16,10 @@ dependencies:
     path: ../module
 
   moor: ^4.5.0
-  moor_generator: ^4.5.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
   build_runner: ^2.1.1
+  moor_generator: ^4.5.1
